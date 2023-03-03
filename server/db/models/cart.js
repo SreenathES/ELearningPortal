@@ -23,4 +23,8 @@ const Cart = sequelize.define('cart', {
     }
 });
 
+Cart.associate = (models) => {
+    Cart.belongsTo(models.User);
+}
+
 module.exports = Cart;
