@@ -1,6 +1,71 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db').sequelize;
+const User = require('./user');
+const CourseCategory = require('./courseCategory');
+const Language = require('./languages');
 
-
+const Course = sequelize.define('course', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    title: {
+        type: DataTypes.STRING(100),
+        allowNull: false
+    },
+    meta_description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    level: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    price: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
+    },
+    featured_image_link: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+    },
+    language_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Language,
+            key: 'id'
+        }
+    },
+    detailed_description: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    status: {
+        type: DataTypes.ENUM('Draft', 'Approved', 'Rejected', 'Removed'),
+        defaultValue: 'Draft'
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: User,
+            key: 'id'
+        }
+    },
+    category_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: CourseCategory,
+            key: 'id'
+        }
+    },
+    total_sessions: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    }
+});
 
 module.exports = Course;
