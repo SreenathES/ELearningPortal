@@ -7,7 +7,7 @@ const CourseCategory = sequelize.define('course_category', {
         primaryKey: true,
         autoIncrement: true
     },
-    course_category: {
+    category: {
         type: DataTypes.STRING(30),
         allowNull: false
     }
