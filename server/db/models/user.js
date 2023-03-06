@@ -34,4 +34,19 @@ const User = sequelize.define('user', {
     }
 });
 
+User.associate = (models) => {
+    User.hasMany(models.Course);
+    User.hasOne(models.UserDetails);
+    User.hasMany(models.Otp);
+    User.belongsToMany(models.Role, { through: models.UserRole, foreignKey: 'user_id' });
+    User.hasMany(models.UserRole);
+    User.hasMany(models.Certificate);
+    User.belongsToMany(models.Course, { through: models.UserCourseEnrollment, foreignKey: 'user_id' });
+    User.hasMany(models.UserCourseEnrollment);
+    User.hasMany(models.Cart);
+    User.hasMany(models.Payment);
+    User.hasMany(models.UserCourseFeedback);
+    User.hasMany(models.UserCourseProgress);
+}
+
 module.exports = User;
