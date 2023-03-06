@@ -13,10 +13,10 @@ const Payment = require('../models/payment');
 const PaymentMethod = require('../models/paymentMethod');
 const Role = require('../models/role');
 const User = require('../models/user');
-const UserCourseEnrollment = require('../models/cart');
+const UserCourseEnrollment = require('../models/userCourseEnrollment');
 const UserCourseFeedback = require('../models/userCourseFeedback');
 const UserCourseProgress = require('../models/userCourseProgress');
-const UserDetails = require('../models/cart');
-const UserRole = require('../models/cart');
+const UserDetails = require('../models/userDetails');
+const UserRole = require('../models/userRoles');
 
 sequelize.sync({alter: true});
