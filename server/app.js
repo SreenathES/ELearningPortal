@@ -10,6 +10,7 @@ const studentRoutes = require('./routes/student.routes');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 app.use('/', userRoutes);
 app.use('/instructor', instructorRoutes);
 app.use('/admin', adminRoutes);
