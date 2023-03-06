@@ -31,4 +31,9 @@ const Certificate = sequelize.define('certificate', {
     }
 });
 
+Certificate.associate = (models) => {
+    Certificate.belongsTo(models.User);
+    Certificate.belongsTo(models.Course);
+}
+
 module.exports = Certificate;
