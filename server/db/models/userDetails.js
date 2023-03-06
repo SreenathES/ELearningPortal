@@ -38,4 +38,8 @@ const UserDetails = sequelize.define('user_details', {
     }
 });
 
+UserDetails.associate = (models) => {
+    UserDetails.belongsTo(models.User);
+}
+
 module.exports = UserDetails;
