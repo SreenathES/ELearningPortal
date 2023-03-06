@@ -30,4 +30,8 @@ const Otp = sequelize.define('otp', {
     }
 });
 
+Otp.associate = (models) => {
+    Otp.belongsTo(models.User);
+}
+
 module.exports = Otp;
