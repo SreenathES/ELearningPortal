@@ -39,4 +39,9 @@ const UserCourseFeedback = sequelize.define('user_course_feedback', {
     }
 });
 
+UserCourseFeedback.associate = (models) => {
+    UserCourseFeedback.belongsTo(models.User);
+    UserCourseFeedback.belongsTo(models.Course);
+}
+
 module.exports = UserCourseFeedback;
