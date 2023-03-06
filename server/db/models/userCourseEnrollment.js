@@ -31,4 +31,9 @@ const UserCourseEnrollment = sequelize.define('user_course_enrollment', {
     }
 });
 
+UserCourseEnrollment.associate = (models) => {
+    UserCourseEnrollment.belongsTo(models.User);
+    UserCourseEnrollment.belongsTo(models.Course);
+}
+
 module.exports = UserCourseEnrollment;
