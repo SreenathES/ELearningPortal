@@ -29,6 +29,11 @@ const CartItems = sequelize.define('cart_items', {
         type: DataTypes.DECIMAL(5,2),
         allowNull: false
     }
-})
+});
+
+CartItems.associate = (models) => {
+    CartItems.belongsTo(models.Cart);
+    CartItems.belongsTo(models.Course);
+}
 
 module.exports = CartItems;
