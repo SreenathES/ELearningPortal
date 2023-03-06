@@ -39,4 +39,9 @@ const CourseContent = sequelize.define('course_content', {
     }
 });
 
+CourseContent.associate = (models) => {
+    CourseContent.belongsTo(models.Course);
+    CourseContent.hasMany(models.UserCourseProgress);
+}
+
 module.exports = CourseContent;
