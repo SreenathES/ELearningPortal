@@ -2,6 +2,7 @@ class ServiceResponse {
     errors = [];
     isValid = true;
     result = null;
+    statusCode = 0;
 
     constructor() {
         this.errors = {};
