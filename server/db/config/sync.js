@@ -19,4 +19,10 @@ const UserCourseProgress = require('../models/userCourseProgress');
 const UserDetails = require('../models/userDetails');
 const UserRole = require('../models/userRole');
 
-sequelize.sync({alter: true});
+sequelize.sync()
+    .then(() => {
+        console.log('All models were synchronized successfully.');
+    })
+    .catch((err) => {
+        console.error('An error occurred while synchronizing the models:', err);
+    });
