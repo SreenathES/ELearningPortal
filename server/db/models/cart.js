@@ -24,10 +24,6 @@ const Cart = sequelize.define('cart', {
 });
 
 Cart.associate = (models) => {
-    const Course = require('./course');
-    const CartItems = require('./cartItems');
-    const Payment = require('./payment');
-
     Cart.belongsTo(models.User);
     Cart.belongsToMany(models.Course, { through: models.CartItems, foreignKey: 'cart_id' });
     Cart.hasMany(models.CartItems, { foreignKey: 'cart_id' });

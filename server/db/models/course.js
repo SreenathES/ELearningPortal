@@ -69,14 +69,6 @@ const Course = sequelize.define('course', {
 });
 
 Course.associate = (models) => {
-    const CourseContent = require('./courseContent');
-    const Certificate = require('./certificate');
-    const Cart = require('./cart');
-    const UserCourseEnrollment = require('./userCourseEnrollment');
-    const CartItems = require('./cartItems');
-    const UserCourseFeedback = require('./userCourseFeedback');
-    const UserCourseProgress = require('./userCourseProgress');
-
     Course.belongsTo(models.CourseCategory);
     Course.belongsTo(models.Language);
     Course.belongsTo(models.User);

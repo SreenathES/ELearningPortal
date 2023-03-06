@@ -14,8 +14,6 @@ const CourseCategory = sequelize.define('course_category', {
 });
 
 CourseCategory.associate = (models) => {
-    const Course = require('./course');
-
     CourseCategory.hasMany(models.Course);
 }
 

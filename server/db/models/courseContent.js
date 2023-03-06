@@ -40,8 +40,6 @@ const CourseContent = sequelize.define('course_content', {
 });
 
 CourseContent.associate = (models) => {
-    const UserCourseProgress = require('./userCourseProgress');
-
     CourseContent.belongsTo(models.Course);
     CourseContent.hasMany(models.UserCourseProgress);
 }

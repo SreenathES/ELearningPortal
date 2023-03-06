@@ -14,8 +14,6 @@ const Language = sequelize.define('language', {
 });
 
 Language.associate = (models) => {
-    const Course = require('./course');
-
     Language.hasMany(models.Course);
 }
 
