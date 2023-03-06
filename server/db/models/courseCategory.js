@@ -13,4 +13,8 @@ const CourseCategory = sequelize.define('course_category', {
     }
 });
 
+CourseCategory.associate = (models) => {
+    CourseCategory.hasMany(models.Course);
+}
+
 module.exports = CourseCategory;
