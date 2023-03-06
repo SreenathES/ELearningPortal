@@ -48,4 +48,9 @@ const Payment = sequelize.define('payment', {
     }
 });
 
+Payment.associate = (models) => {
+    Payment.belongsTo(models.PaymentMethod);
+    Payment.belongsTo(models.Cart);
+    Payment.belongsTo(models.Cart);
+}
 module.exports = Payment;
