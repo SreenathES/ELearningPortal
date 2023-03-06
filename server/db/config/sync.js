@@ -17,6 +17,6 @@ const UserCourseEnrollment = require('../models/userCourseEnrollment');
 const UserCourseFeedback = require('../models/userCourseFeedback');
 const UserCourseProgress = require('../models/userCourseProgress');
 const UserDetails = require('../models/userDetails');
-const UserRole = require('../models/userRoles');
+const UserRole = require('../models/userRole');
 
 sequelize.sync({alter: true});
