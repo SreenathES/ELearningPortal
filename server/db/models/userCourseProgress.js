@@ -40,4 +40,10 @@ const UserCourseProgress = sequelize.define('user_course_progress', {
     }
 });
 
+UserCourseProgress.associate = (models) => {
+    UserCourseProgress.belongsTo(models.Course);
+    UserCourseProgress.belongsTo(models.User);
+    UserCourseProgress.belongsTo(models.CourseContent);
+}
+
 module.exports = UserCourseProgress;
