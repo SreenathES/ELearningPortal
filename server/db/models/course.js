@@ -3,13 +3,6 @@ const sequelize = require('../config/db');
 const User = require('./user');
 const CourseCategory = require('./courseCategory');
 const Language = require('./languages');
-const CourseContent = require('./courseContent');
-const Certificate = require('./certificate');
-const Cart = require('./cart');
-const UserCourseEnrollment = require('./userCourseEnrollment');
-const CartItems = require('./cartItems');
-const UserCourseFeedback = require('./userCourseFeedback');
-const UserCourseProgress = require('./userCourseProgress');
 
 const Course = sequelize.define('course', {
     id: {
@@ -76,6 +69,14 @@ const Course = sequelize.define('course', {
 });
 
 Course.associate = (models) => {
+    const CourseContent = require('./courseContent');
+    const Certificate = require('./certificate');
+    const Cart = require('./cart');
+    const UserCourseEnrollment = require('./userCourseEnrollment');
+    const CartItems = require('./cartItems');
+    const UserCourseFeedback = require('./userCourseFeedback');
+    const UserCourseProgress = require('./userCourseProgress');
+
     Course.belongsTo(models.CourseCategory);
     Course.belongsTo(models.Language);
     Course.belongsTo(models.User);

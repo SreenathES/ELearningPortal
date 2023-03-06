@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const Course = require('./course');
 
 const Language = sequelize.define('language', {
     id: {
@@ -15,6 +14,8 @@ const Language = sequelize.define('language', {
 });
 
 Language.associate = (models) => {
+    const Course = require('./course');
+
     Language.hasMany(models.Course);
 }
 

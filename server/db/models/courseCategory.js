@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const Course = require('./course');
 
 const CourseCategory = sequelize.define('course_category', {
     id: {
@@ -15,6 +14,8 @@ const CourseCategory = sequelize.define('course_category', {
 });
 
 CourseCategory.associate = (models) => {
+    const Course = require('./course');
+
     CourseCategory.hasMany(models.Course);
 }
 

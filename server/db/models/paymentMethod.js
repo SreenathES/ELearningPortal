@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const Payment = require('./payment');
 
 const PaymentMethod = sequelize.define('payment_method', {
     id: {
@@ -15,6 +14,8 @@ const PaymentMethod = sequelize.define('payment_method', {
 });
 
 PaymentMethod.associate = (models) => {
+    const Payment = require('./payment');
+
     PaymentMethod.hasMany(models.Payment);
 }
 

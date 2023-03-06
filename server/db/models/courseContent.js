@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Course = require('./course');
-const UserCourseProgress = require('./userCourseProgress');
 
 const CourseContent = sequelize.define('course_content', {
     id: {
@@ -41,6 +40,8 @@ const CourseContent = sequelize.define('course_content', {
 });
 
 CourseContent.associate = (models) => {
+    const UserCourseProgress = require('./userCourseProgress');
+
     CourseContent.belongsTo(models.Course);
     CourseContent.hasMany(models.UserCourseProgress);
 }
