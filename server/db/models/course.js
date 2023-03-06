@@ -68,4 +68,17 @@ const Course = sequelize.define('course', {
     }
 });
 
+Course.associate = (models) => {
+    Course.belongsTo(models.CourseCategory);
+    Course.belongsTo(models.Language);
+    Course.belongsTo(models.User);
+    Course.hasMany(models.CourseContent);
+    Course.hasMany(models.Certificate);
+    Course.belongsToMany(models.User, { through: models.UserCourseEnrollment, foreignKey: 'course_id' });
+    Course.belongsToMany(models.Cart, { through: models.CartItems, foreignKey: 'course_id' });
+    Course.hasMany(models.CartItems);
+    Course.hasMany(models.UserCourseFeedback);
+    Course.hasMany(models.UserCourseProgress);
+}
+
 module.exports = Course;
