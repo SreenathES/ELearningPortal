@@ -33,7 +33,7 @@ const login = async (data) => {
         });
         if (!user) {
             response.addError('email', 'Invalid email or password');
-            response.statusCode = 401;
+            response.statusCode = 400;
             return response;
         }
 
@@ -41,7 +41,7 @@ const login = async (data) => {
         const isMatch = await bcrypt.compare(value.password, user.password);
         if (!isMatch) {
             response.addError('password', 'Invalid email or password');
-            response.statusCode = 401;
+            response.statusCode = 400;
             return response;
         }
 
