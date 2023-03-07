@@ -40,8 +40,8 @@ const CourseContent = sequelize.define('course_content', {
 });
 
 CourseContent.associate = (models) => {
-    CourseContent.belongsTo(models.Course);
-    CourseContent.hasMany(models.UserCourseProgress);
+    CourseContent.belongsTo(models.course, { foreignKey: 'course_id' });
+    CourseContent.hasMany(models.user_course_progress, { foreignKey: 'course_content_id' });
 }
 
 module.exports = CourseContent;

@@ -14,7 +14,7 @@ const Language = sequelize.define('language', {
 });
 
 Language.associate = (models) => {
-    Language.hasMany(models.Course);
+    Language.hasMany(models.course, { foreignKey: 'language_id' });
 }
 
 module.exports = Language;

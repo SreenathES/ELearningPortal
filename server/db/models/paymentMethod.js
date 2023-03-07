@@ -14,7 +14,7 @@ const PaymentMethod = sequelize.define('payment_method', {
 });
 
 PaymentMethod.associate = (models) => {
-    PaymentMethod.hasMany(models.Payment);
+    PaymentMethod.hasMany(models.payment, { foreignKey: 'payment_method_id' });
 }
 
 module.exports = PaymentMethod;

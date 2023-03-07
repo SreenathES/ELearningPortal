@@ -10,7 +10,7 @@ const Payment = sequelize.define('payment', {
         primaryKey: true,
         autoIncrement: true
     },
-    payment_method: {
+    payment_method_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -49,8 +49,8 @@ const Payment = sequelize.define('payment', {
 });
 
 Payment.associate = (models) => {
-    Payment.belongsTo(models.PaymentMethod);
-    Payment.belongsTo(models.Cart);
-    Payment.belongsTo(models.Cart);
+    Payment.belongsTo(models.payment_method, { foreignKey: 'payment_method_id' });
+    Payment.belongsTo(models.cart, { foreignKey: 'cart_id' });
+    Payment.belongsTo(models.user, { foreignKey: 'user_id' });
 }
 module.exports = Payment;

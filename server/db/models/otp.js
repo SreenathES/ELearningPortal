@@ -31,7 +31,7 @@ const Otp = sequelize.define('otp', {
 });
 
 Otp.associate = (models) => {
-    Otp.belongsTo(models.User);
+    Otp.belongsTo(models.user, { foreignKey: 'user_id' });
 }
 
 module.exports = Otp;

@@ -35,18 +35,18 @@ const User = sequelize.define('user', {
 });
 
 User.associate = (models) => {
-    User.hasMany(models.Course);
-    User.hasOne(models.UserDetails);
-    User.hasMany(models.Otp);
-    User.belongsToMany(models.Role, { through: models.UserRole, foreignKey: 'user_id' });
-    User.hasMany(models.UserRole);
-    User.hasMany(models.Certificate);
-    User.belongsToMany(models.Course, { through: models.UserCourseEnrollment, foreignKey: 'user_id' });
-    User.hasMany(models.UserCourseEnrollment);
-    User.hasMany(models.Cart);
-    User.hasMany(models.Payment);
-    User.hasMany(models.UserCourseFeedback);
-    User.hasMany(models.UserCourseProgress);
+    User.hasMany(models.course, { foreignKey: 'user_id' });
+    User.hasOne(models.user_details, { foreignKey: 'user_id' });
+    User.hasMany(models.otp, { foreignKey: 'user_id' });
+    User.belongsToMany(models.role, { through: models.user_role, foreignKey: 'user_id' });
+    User.hasMany(models.user_role, { foreignKey: 'user_id' });
+    User.hasMany(models.certificate, { foreignKey: 'user_id' });
+    User.belongsToMany(models.course, { through: models.user_course_enrollment, foreignKey: 'user_id' });
+    User.hasMany(models.user_course_enrollment, { foreignKey: 'user_id' });
+    User.hasMany(models.cart, { foreignKey: 'user_id' });
+    User.hasMany(models.payment, { foreignKey: 'user_id' });
+    User.hasMany(models.user_course_feedback, { foreignKey: 'user_id' });
+    User.hasMany(models.user_course_progress, { foreignKey: 'user_id' });
 }
 
 module.exports = User;

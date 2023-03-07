@@ -14,7 +14,7 @@ const CourseCategory = sequelize.define('course_category', {
 });
 
 CourseCategory.associate = (models) => {
-    CourseCategory.hasMany(models.Course);
+    CourseCategory.hasMany(models.course, { foreignKey: 'category_id' });
 }
 
 module.exports = CourseCategory;

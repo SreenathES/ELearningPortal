@@ -39,7 +39,7 @@ const UserDetails = sequelize.define('user_details', {
 });
 
 UserDetails.associate = (models) => {
-    UserDetails.belongsTo(models.User);
+    UserDetails.belongsTo(models.user, { foreignKey: 'user_id' });
 }
 
 module.exports = UserDetails;

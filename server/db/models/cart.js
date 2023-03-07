@@ -24,10 +24,10 @@ const Cart = sequelize.define('cart', {
 });
 
 Cart.associate = (models) => {
-    Cart.belongsTo(models.User);
-    Cart.belongsToMany(models.Course, { through: models.CartItems, foreignKey: 'cart_id' });
-    Cart.hasMany(models.CartItems, { foreignKey: 'cart_id' });
-    Cart.hasMany(models.Payment);
+    Cart.belongsTo(models.user, { foreignKey: 'user_id' });
+    Cart.belongsToMany(models.course, { through: models.cart_items, foreignKey: 'cart_id' });
+    Cart.hasMany(models.cart_items, { foreignKey: 'cart_id' });
+    Cart.hasMany(models.payment, { foreignKey: 'cart_id' });
 }
 
 module.exports = Cart;

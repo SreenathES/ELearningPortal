@@ -26,14 +26,14 @@ const CartItems = sequelize.define('cart_items', {
         }
     },
     amount: {
-        type: DataTypes.DECIMAL(5,2),
+        type: DataTypes.DECIMAL(5, 2),
         allowNull: false
     }
 });
 
 CartItems.associate = (models) => {
-    CartItems.belongsTo(models.Cart);
-    CartItems.belongsTo(models.Course);
+    CartItems.belongsTo(models.cart, { foreignKey: 'cart_id' });
+    CartItems.belongsTo(models.course, { foreignKey: 'course_id' });
 }
 
 module.exports = CartItems;
