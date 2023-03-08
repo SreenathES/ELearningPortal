@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt');
-const { createToken } = require('../utils/jwtHelper');
+const { generateOtp } = require('../utils/otpGenerator');
 const { validateLoginData, validateStudentData } = require('../validators/authValidator');
 const db = require('../db/models/index');
+const Op = db.Sequelize.Op;
 const ServiceResponse = require('../utils/serviceResponse');
+const { sendMail } = require('./mailService');
 
 /**
  * Login service
@@ -45,13 +47,68 @@ const login = async (data) => {
             return response;
         }
 
-        // Generate token and return result
-        const token = createToken({ id: user.id, firstName: user.first_name, email: user.email });
+        // Check if there is an active OTP for the user.
+        const existingOTP = await db.otp.findOne({
+            where: {
+                user_id: user.id,
+                expiry: { [Op.gt]: new Date() }
+            }
+        });
+        if (existingOTP) {
+            // If there is an existing otp for the user, then send otp to user's mail.
+            const resendOtp = await sendMail({
+                name: user.first_name,
+                to: user.email,
+                OTP: existingOTP.otp_code
+            });
+            if (!resendOtp) {
+                response.addError('otp', 'Cannot send otp, try again later');
+                response.statusCode = 500;
+                return response;
+            }
+
+            response.result = {
+                message: 'OTP has been sent to your email',
+                userId: user.id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                role: user.roles[0].role,
+                email: user.email
+            }
+            response.statusCode = 200;
+            return response;
+        }
+
+        // Generate an OTP and save it to the database.
+        const otp = generateOtp();
+        const otpExpiry = new Date(Date.now() + process.env.OTP_EXPIRY_DURATION * 60 * 1000);
+        await db.otp.create({
+            user_id: user.id,
+            otp_code: otp,
+            expiry: otpExpiry,
+            purpose: 'Login'
+        });
+
+        // Sending otp to user's mail.
+        const sendOtp = await sendMail({
+            name: user.first_name,
+            to: user.email,
+            OTP: otp
+        });
+
+        if (!sendOtp) {
+            response.addError('otp', 'Cannot send otp, try again later');
+            response.statusCode = 500;
+            return response;
+        }
+
         response.result = {
+            message: 'OTP has been sent to your email',
+            userId: user.id,
             firstName: user.first_name,
             lastName: user.last_name,
             role: user.roles[0].role,
-            token
+            email: user.email
         };
         response.statusCode = 200;
         return response;
