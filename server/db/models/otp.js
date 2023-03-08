@@ -17,7 +17,7 @@ const Otp = sequelize.define('otp', {
         allowNull: false
     },
     expiry: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DATE,
         allowNull: false
     },
     user_id: {
