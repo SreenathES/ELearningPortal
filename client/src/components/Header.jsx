@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -81,7 +82,9 @@ function Header(params) {
                                 </MenuItem>
                             </Menu>
                         </Box>
-                        <img src={logo} alt="MyLearn" width='150' />
+                        <Link component={RouterLink} to='/' mt={1}>
+                            <img src={logo} alt="MyLearn" width='150' />
+                        </Link>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Button
@@ -92,7 +95,7 @@ function Header(params) {
                             </Button>
                         </Box>
                         <Box sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
-                            <Link href="" color="inherit" underline="none" variant="body2"
+                            <Link component={RouterLink} to='/login' color="inherit" underline="none" variant="body2"
                                 sx={[
                                     {
                                         '&:hover': {
