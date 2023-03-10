@@ -5,7 +5,7 @@ import VideocamIcon from '@mui/icons-material/VideocamOutlined';
 
 function Home() {
     return (
-        <Box mt={3}>
+        <Box mt={3} className='vh-80' display={'flex'}>
             <Grid
                 container
                 spacing={2}
