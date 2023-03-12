@@ -13,8 +13,6 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../assets/images/logo/logo.png'
 
-const settings = ['Student', 'Instructor'];
-
 function Header(params) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -131,11 +129,28 @@ function Header(params) {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link component={RouterLink} to={'/register/student'} textAlign="center" color="inherit" underline="none"
+                                        sx={[
+                                            {
+                                                '&:hover': {
+                                                    color: '#9C27B0'
+                                                }
+                                            }
+                                        ]}
+                                    >Student</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link component={RouterLink} to={'/register/instructor'} textAlign="center" color="inherit" underline="none"
+                                        sx={[
+                                            {
+                                                '&:hover': {
+                                                    color: '#9C27B0'
+                                                }
+                                            }
+                                        ]}
+                                    >Instructor</Link>
+                                </MenuItem>
                             </Menu>
                         </Box>
                     </Toolbar>
