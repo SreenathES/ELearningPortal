@@ -117,18 +117,6 @@ const login = async (data) => {
 const registerStudent = async (data) => {
     const response = new ServiceResponse();
 
-    // Validate input data using joi validator.
-    const { error } = validateStudentData(data);
-    if (error) {
-        error.details.forEach((detail) => {
-            const key = detail.path[0];
-            const message = detail.message;
-            response.addError(key, message);
-        });
-        response.statusCode = 400;
-        return response;
-    }
-
     try {
         // Find the user with specified email address.
         const user = await db.user.findOne({
