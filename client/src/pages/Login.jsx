@@ -15,8 +15,8 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { loginSchema } from '../utils/validators/authValidator';
 
 const theme = createTheme();
 
@@ -25,24 +25,12 @@ function Login() {
         console.log(data);
     };
 
-    const schema = yup.object().shape({
-        email: yup
-            .string()
-            .email('Invalid email')
-            .required('Email is required')
-            .matches(
-                /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                'Invalid email'
-            ),
-        password: yup.string().required('Password is required')
-    });
-
     const {
         handleSubmit,
         register,
         formState: { errors }
     } = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(loginSchema)
     });
 
 
