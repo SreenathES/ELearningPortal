@@ -69,14 +69,14 @@ function Header(params) {
                                 <MenuItem onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">Courses</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">Login</Typography>
-                                </MenuItem>
-                                <MenuItem onClick={handleCloseNavMenu}>
+                                <MenuItem component={RouterLink} to={'/register/student'} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">Student Registration</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={handleCloseNavMenu}>
+                                <MenuItem component={RouterLink} to={'/register/instructor'} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">Instructor Registration</Typography>
+                                </MenuItem>
+                                <MenuItem component={RouterLink} to='/login' onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">Login</Typography>
                                 </MenuItem>
                             </Menu>
                         </Box>
