@@ -18,7 +18,7 @@ const validateLoginData = (data) => {
  * @param {object} data - An object containing student's first name, last name, email, phone and password.
  * @returns {object} A Joi validation result object.
  */
-const validateStudentData = (data) => {
+const validateStudentRegistration = (data) => {
     const schema = joi.object({
         firstName: joi.string().required(),
         lastName: joi.string(),
@@ -31,5 +31,5 @@ const validateStudentData = (data) => {
 
 module.exports = {
     validateLoginData,
-    validateStudentData
+    validateStudentRegistration
 };
