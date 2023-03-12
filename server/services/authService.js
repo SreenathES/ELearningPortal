@@ -15,22 +15,10 @@ const { sendMail } = require('./mailService');
 const login = async (data) => {
     const response = new ServiceResponse();
 
-    // Validate the input data using joi validator.
-    const { error, value } = validateLoginData(data);
-    if (error) {
-        error.details.forEach((detail) => {
-            const key = detail.path[0];
-            const message = detail.message;
-            response.addError(key, message);
-        });
-        response.statusCode = 400;
-        return response;
-    }
-
     try {
         // Find the user with specified email address.
         const user = await db.user.findOne({
-            where: { email: value.email },
+            where: { email: data.email },
             include: [{ model: db.role, as: 'roles' }]
         });
         if (!user) {
@@ -40,7 +28,7 @@ const login = async (data) => {
         }
 
         // Compare the provided password with hash stored in the database.
-        const isMatch = await bcrypt.compare(value.password, user.password);
+        const isMatch = await bcrypt.compare(data.password, user.password);
         if (!isMatch) {
             response.addError('password', 'Invalid email or password');
             response.statusCode = 400;
@@ -130,7 +118,7 @@ const registerStudent = async (data) => {
     const response = new ServiceResponse();
 
     // Validate input data using joi validator.
-    const { error, value } = validateStudentData(data);
+    const { error } = validateStudentData(data);
     if (error) {
         error.details.forEach((detail) => {
             const key = detail.path[0];
@@ -144,7 +132,7 @@ const registerStudent = async (data) => {
     try {
         // Find the user with specified email address.
         const user = await db.user.findOne({
-            where: { email: value.email }
+            where: { email: data.email }
         });
         if (user) {
             response.addError('account', 'User already exists');
@@ -163,14 +151,14 @@ const registerStudent = async (data) => {
         }
 
         // Hashing the plain text password entered by the user.
-        const hash = bcrypt.hashSync(value.password, parseInt(process.env.SALT_ROUNDS));
+        const hash = bcrypt.hashSync(data.password, parseInt(process.env.SALT_ROUNDS));
 
         // Insert student information into user table.
         const createStudent = await db.user.create({
-            first_name: value.firstName,
-            last_name: value.lastName,
-            phone: value.phone,
-            email: value.email,
+            first_name: data.firstName,
+            last_name: data.lastName,
+            phone: data.phone,
+            email: data.email,
             password: hash
         })
 
