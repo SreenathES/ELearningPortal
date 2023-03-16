@@ -7,7 +7,7 @@ export const loginSchema = yup.object().shape({
         .email('Invalid email')
         .required('Email is required')
         .matches(
-            /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g,
             'Invalid email'
         ),
     password: yup.string().required('Password is required')
@@ -27,7 +27,7 @@ export const studentRegistrationSchema = yup.object().shape({
         .string()
         .required('Email is required*')
         .matches(
-            /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+            /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g,
             'Email must be valid'
         ),
     phone: yup
@@ -65,7 +65,7 @@ export const instructorRegistrationSchema = yup.object().shape({
     email: yup
         .string()
         .required('Email is required*')
-        .matches(/^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g, 'Email must be valid'),
+        .matches(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g, 'Email must be valid'),
     phone: yup
         .string()
         .required('Phone is required*')
