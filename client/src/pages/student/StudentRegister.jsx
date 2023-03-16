@@ -69,7 +69,7 @@ function StudentRegister() {
 											type={'text'}
 											autoFocus
 											{...register('firstName')}
-											error={errors.firstName}
+											error={errors.firstName ? true : false}
 											helperText={errors.firstName ? errors.firstName.message : null}
 										/>
 									</Grid>
@@ -82,7 +82,7 @@ function StudentRegister() {
 											name="lastName"
 											type={'text'}
 											{...register('lastName')}
-											error={errors.lastName}
+											error={errors.lastName ? true : false}
 											helperText={errors.lastName ? errors.lastName.message : null}
 										/>
 									</Grid>
@@ -95,7 +95,7 @@ function StudentRegister() {
 											name="email"
 											type={'text'}
 											{...register('email')}
-											error={errors.email}
+											error={errors.email ? true : false}
 											helperText={errors.email ? errors.email.message : null}
 										/>
 									</Grid>
@@ -108,7 +108,7 @@ function StudentRegister() {
 											name="phone"
 											type={'text'}
 											{...register('phone')}
-											error={errors.phone}
+											error={errors.phone ? true : false}
 											helperText={errors.phone ? errors.phone.message : null}
 										/>
 									</Grid>
@@ -121,7 +121,7 @@ function StudentRegister() {
 											name="password"
 											type={'password'}
 											{...register('password')}
-											error={errors.password}
+											error={errors.password ? true : false}
 											helperText={errors.password ? errors.password.message : null}
 										/>
 									</Grid>
@@ -134,7 +134,7 @@ function StudentRegister() {
 											name="confirmPassword"
 											type={'password'}
 											{...register('confirmPassword')}
-											error={errors.confirmPassword}
+											error={errors.confirmPassword ? true : false}
 											helperText={errors.confirmPassword ? errors.confirmPassword.message : null}
 										/>
 									</Grid>

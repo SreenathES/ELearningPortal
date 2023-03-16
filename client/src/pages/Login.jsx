@@ -13,16 +13,27 @@ import {
     Typography
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../utils/validators/authValidator';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 function Login() {
+    const [loading, setLoading] = useState(false);
+    const [buttonStatus, setButtonStatus] = useState(false);
+    const navigate = useNavigate();
+
     const login = (data) => {
+        setButtonStatus(true);
+        setLoading(true)
         console.log(data);
+        setTimeout(() => {
+            navigate('/otp')
+        }, 2000)
     };
 
     const {
@@ -32,7 +43,6 @@ function Login() {
     } = useForm({
         resolver: yupResolver(loginSchema)
     });
-
 
     return (
         <ThemeProvider theme={theme}>
@@ -69,7 +79,7 @@ function Login() {
                                 autoComplete="email"
                                 autoFocus
                                 {...register('email')}
-                                error={errors.email}
+                                error={errors.email ? true : false}
                                 helperText={errors.email ? errors.email.message : null}
                             />
                             <TextField
@@ -82,7 +92,7 @@ function Login() {
                                 id="password"
                                 autoComplete="current-password"
                                 {...register('password')}
-                                error={errors.password}
+                                error={errors.password ? true : false}
                                 helperText={errors.password ? errors.password.message : null}
                             />
                             <Button
@@ -90,8 +100,11 @@ function Login() {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
+                                disabled={buttonStatus}
                             >
-                                Log In
+                                {
+                                    loading ? <CircularProgress color="inherit" /> : 'Log In'
+                                }
                             </Button>
                             <Link href="#" variant="body2" display={'block'} textAlign={'center'}>
                                 Forgot password?
