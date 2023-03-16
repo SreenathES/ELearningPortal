@@ -75,7 +75,7 @@ function InstructorRegister() {
                                             type={'text'}
                                             autoFocus
                                             {...register('firstName')}
-                                            error={errors.firstName}
+                                            error={errors.firstName ? true : false}
                                             helperText={
                                                 errors.firstName
                                                     ? errors.firstName.message
@@ -92,7 +92,7 @@ function InstructorRegister() {
                                             name='lastName'
                                             type={'text'}
                                             {...register('lastName')}
-                                            error={errors.lastName}
+                                            error={errors.lastName ? true : false}
                                             helperText={
                                                 errors.lastName
                                                     ? errors.lastName.message
@@ -109,7 +109,7 @@ function InstructorRegister() {
                                             name='email'
                                             type={'text'}
                                             {...register('email')}
-                                            error={errors.email}
+                                            error={errors.email ? true : false}
                                             helperText={
                                                 errors.email
                                                     ? errors.email.message
@@ -126,7 +126,7 @@ function InstructorRegister() {
                                             name='phone'
                                             type={'text'}
                                             {...register('phone')}
-                                            error={errors.phone}
+                                            error={errors.phone ? true : false}
                                             helperText={
                                                 errors.phone
                                                     ? errors.phone.message
@@ -142,7 +142,7 @@ function InstructorRegister() {
                                             label='Year Of Experience'
                                             name='yearOfExperience'
                                             {...register('yearOfExperience')}
-                                            error={errors.yearOfExperience}
+                                            error={errors.yearOfExperience ? true : false}
                                             helperText={
                                                 errors.yearOfExperience
                                                     ? errors.yearOfExperience.message
@@ -158,7 +158,7 @@ function InstructorRegister() {
                                             label='Education'
                                             name='education'
                                             {...register('education')}
-                                            error={errors.education}
+                                            error={errors.education ? true : false}
                                             helperText={
                                                 errors.education
                                                     ? errors.education.message
@@ -174,7 +174,7 @@ function InstructorRegister() {
                                             id='dateOfBirth'
                                             name='dateOfBirth'
                                             {...register('dateOfBirth')}
-                                            error={errors.dateOfBirth}
+                                            error={errors.dateOfBirth ? true : false}
                                             helperText={
                                                 errors.dateOfBirth
                                                     ? errors.dateOfBirth.message
@@ -190,7 +190,7 @@ function InstructorRegister() {
                                             label='Area Of Expertise'
                                             name='areaOfExpertise'
                                             {...register('areaOfExpertise')}
-                                            error={errors.areaOfExpertise}
+                                            error={errors.areaOfExpertise ? true : false}
                                             helperText={
                                                 errors.areaOfExpertise
                                                     ? errors.areaOfExpertise.message
@@ -207,7 +207,7 @@ function InstructorRegister() {
                                             name='password'
                                             type={'password'}
                                             {...register('password')}
-                                            error={errors.password}
+                                            error={errors.password ? true : false}
                                             helperText={
                                                 errors.password
                                                     ? errors.password.message
@@ -224,7 +224,7 @@ function InstructorRegister() {
                                             name='confirmPassword'
                                             type={'password'}
                                             {...register('confirmPassword')}
-                                            error={errors.confirmPassword}
+                                            error={errors.confirmPassword ? true : false}
                                             helperText={
                                                 errors.confirmPassword
                                                     ? errors.confirmPassword
